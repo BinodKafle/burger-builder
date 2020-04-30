@@ -29,14 +29,7 @@ workflows:
       - test:
           requires:
             - build
-      - hold:
-          type: approval
-          requires:
-            - test
       - deploy:
           requires:
-            - hold
-          filters:
-            branches:
-              only:
-                - master
+            - test
+          
