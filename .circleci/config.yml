@@ -1,42 +1,17 @@
-version: 2
+version: 2.1
+orbs:
+  node: circleci/node@1.1.6
 jobs:
-  build:
-    docker:
-      - image: circleci/node:7.10
-    working_directory: ~/repo
-    steps:
-      - run: echo build step
-
-  test:
-    docker:
-      - image: circleci/node:7.10
-    working_directory: ~/repo
-    steps:
-      - run: echo test step
-
-  deploy:
-    docker:
-      - image: circleci/node:7.10
-    working_directory: ~/repo
-    steps:
-      - run: echo deploy step
-
-workflows:
-  version: 2
   build-and-test:
-    jobs:
-      - build
-      - test:
-          requires:
-            - build
-      - hold:
-          type: approval
-          requires:
-            - test
-      - deploy:
-          requires:
-            - hold
-          filters:
-            branches:
-              only:
-                - master
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - node/with-cache:
+          steps:
+            - run: npm install
+            - run: npm test
+workflows:
+    build-and-test:
+      jobs:
+        - build-and-test
