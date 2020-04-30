@@ -7,6 +7,7 @@ jobs:
     steps:
       - checkout
         # Download and cache dependencies
+      - run: npm install
       - run: npm run-script build
       - run: ls ~/burger-builder/build/
       - run: echo build completed
