@@ -1,3 +1,5 @@
+# Burger Builder [![CircleCI](https://circleci.com/gh/BinodKafle/burger-builder.svg?style=svg)](https://circleci.com/gh/BinodKafle/burger-builder)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
